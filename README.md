@@ -1,2 +1,2 @@
-# mpweex-playground
-mpweex playground
+# mpweex-demo
+mpweex demo
