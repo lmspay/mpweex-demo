@@ -22,6 +22,7 @@ public class App extends MultiDexApplication {
             InitConfig initConfig = new InitConfig.Builder()
                     .setImgAdapter(new GlideImageAdapter())
                     .setGeoAdapter(new AmapGeoAdapter())
+                    .setUserInfoAdapter(new UserInfoAdpater())
                     .setWebSocketAdapterFactory(new DefaultWebSocketAdapterFactory())
                     .build();
             MPWeexSDK.getInstance().initialize(this, initConfig, BuildConfig.DEBUG);
