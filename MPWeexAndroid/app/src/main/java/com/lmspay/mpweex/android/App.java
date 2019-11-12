@@ -18,6 +18,9 @@ public class App extends MultiDexApplication {
 
         String curProcessName = getProcessName(this, android.os.Process.myPid());
         if(curProcessName != null && curProcessName.equalsIgnoreCase(this.getPackageName())) {
+            MPWeexSDK.getInstance().setBasePath("mpweex api host");
+            MPWeexSDK.getInstance().setAppId("your appid");
+
             // 初始化mpweex
             InitConfig initConfig = new InitConfig.Builder()
                     .setImgAdapter(new GlideImageAdapter())
@@ -26,9 +29,6 @@ public class App extends MultiDexApplication {
                     .setWebSocketAdapterFactory(new DefaultWebSocketAdapterFactory())
                     .build();
             MPWeexSDK.getInstance().initialize(this, initConfig, BuildConfig.DEBUG);
-
-            MPWeexSDK.getInstance().setBasePath("mpweex api host");
-            MPWeexSDK.getInstance().setAppId("your appid");
         } else {
             //初始化其它进程的资源
         }
