@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweex.android.mpweex;
 
 import android.support.annotation.Nullable;
 

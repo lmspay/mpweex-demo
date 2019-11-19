@@ -1,0 +1,640 @@
+{
+  "CommonModel": {
+    "type": "object",
+    "description": "通用模型",
+    "properties": {
+      "code": {
+        "type": "integer",
+        "format": "int32",
+        "description": "错误码"
+      },
+      "message": {
+        "type": "string",
+        "description": "错误描述"
+      }
+    }
+  },
+  "RecommendModel": {
+    "type": "object",
+    "properties": {
+      "appid": {
+        "type": "string",
+        "description": "APPID"
+      },
+      "bsopenid": {
+        "type": "string",
+        "description": "APP商户id"
+      },
+      "bsopenname": {
+        "type": "string",
+        "description": "APP商户名称"
+      },
+      "mpid": {
+        "type": "string",
+        "description": "小程序id"
+      },
+      "mininame": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "logo": {
+        "type": "string",
+        "description": "小程序图标"
+      },
+      "category": {
+        "type": "string",
+        "description": "小程序分类"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序主体信息"
+      },
+      "mpdesc": {
+        "type": "string",
+        "description": "小程序简介"
+      },
+      "priority": {
+        "type": "integer",
+        "format": "int32",
+        "description": "推荐优先级别"
+      },
+      "systemtype": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序系统类别 0 宿主 1 普通"
+      },
+      "canoffline": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否支持离线访问"
+      }
+    }
+  },
+  "OrderInfoModel": {
+    "type": "object",
+    "properties": {
+      "tradeno": {
+        "type": "string",
+        "description": "交易流水号"
+      },
+      "mpname": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序开发者"
+      },
+      "bsopenname": {
+        "type": "string",
+        "description": "APP商户名称"
+      },
+      "paychannel": {
+        "type": "string",
+        "description": "支付渠道"
+      },
+      "payamount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "付款金额"
+      },
+      "payfee": {
+        "type": "integer",
+        "format": "int32",
+        "description": "支付手续费"
+      },
+      "status": {
+        "type": "integer",
+        "format": "int32",
+        "description": "状态"
+      },
+      "orderdesc": {
+        "type": "string",
+        "description": "订单描述"
+      },
+      "productdesc": {
+        "type": "string",
+        "description": "商品描述"
+      },
+      "thirdorder": {
+        "type": "string",
+        "description": "第三方订单号"
+      },
+      "creatat": {
+        "type": "string",
+        "description": "第三方订单号"
+      },
+      "payat": {
+        "type": "string",
+        "description": "付款时间"
+      },
+      "completeat": {
+        "type": "string",
+        "description": "完成时间"
+      }
+    }
+  },
+  "OpenAccountModel": {
+    "type": "object",
+    "properties": {
+      "unionid": {
+        "type": "string",
+        "description": "用户唯一标识"
+      },
+      "privatekey": {
+        "type": "string",
+        "description": "用户私钥"
+      },
+      "salt": {
+        "type": "string",
+        "description": "盐值"
+      }
+    }
+  },
+  "MpweexModel": {
+    "type": "object",
+    "description": "小程序模型",
+    "properties": {
+      "mpid": {
+        "type": "string",
+        "description": "小程序唯一标识"
+      },
+      "mininame": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "logo": {
+        "type": "string",
+        "description": "小程序logo"
+      },
+      "systemtype": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序系统类别 0 宿主 1 普通"
+      },
+      "themepar": {
+        "type": "string",
+        "description": "主题参数"
+      },
+      "describes": {
+        "type": "string",
+        "description": "小程序上架描述"
+      },
+      "picture": {
+        "type": "string",
+        "description": "小程序介绍图片 多张图片用逗号隔开"
+      },
+      "versioncode": {
+        "type": "integer",
+        "format": "int32",
+        "description": "系统版本号 平台自增版本号"
+      },
+      "version": {
+        "type": "string",
+        "description": "小程序版本号 开发者定义版本号"
+      },
+      "address": {
+        "type": "string",
+        "description": "项目路径"
+      },
+      "category": {
+        "type": "string",
+        "description": "小程序分类"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序主体信息"
+      },
+      "mpdesc": {
+        "type": "string",
+        "description": "小程序简介"
+      },
+      "secretkey": {
+        "type": "string",
+        "description": "小程序密钥"
+      },
+      "cryptokey": {
+        "type": "string",
+        "description": "小程序加密密钥"
+      },
+      "upat": {
+        "type": "string",
+        "description": "上线时间"
+      },
+      "ismaintain": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否维护 0 否 1 是"
+      },
+      "status": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否维护 1上架 2下架"
+      },
+      "isfrozen": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否冻结 0 否 1 是"
+      },
+      "isower": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否我的小程序 0 否 1 是"
+      },
+      "hash": {
+        "type": "string",
+        "description": "当前版本hash值"
+      },
+      "maintaininfo": {
+        "type": "object",
+        "schema": null,
+        "$ref": "#/definitions/MaintenanceModel",
+        "description": "维护信息模型"
+      },
+      "canoffline": {
+        "type": "integer",
+        "format": "int32",
+        "description": "离线访问  0不支持  1支持"
+      },
+      "requesturl": {
+        "type": "string",
+        "description": "request合法域名"
+      },
+      "socketurl": {
+        "type": "string",
+        "description": "socket合法域名"
+      },
+      "uploadurl": {
+        "type": "string",
+        "description": "uploadFile合法域名"
+      },
+      "downloadurl": {
+        "type": "string",
+        "description": "downloadFile合法域名"
+      }
+    }
+  },
+  "AccesslogModel": {
+    "type": "object",
+    "description": "最近访问的小程序模型",
+    "properties": {
+      "mpid": {
+        "type": "string",
+        "description": "小程序唯一标识"
+      },
+      "mininame": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "logo": {
+        "type": "string",
+        "description": "小程序logo"
+      },
+      "category": {
+        "type": "string",
+        "description": "小程序分类"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序主体信息"
+      },
+      "mpdesc": {
+        "type": "string",
+        "description": "小程序简介"
+      },
+      "extra": {
+        "type": "string",
+        "description": "扩展字段"
+      },
+      "viewat": {
+        "type": "string",
+        "description": "访问时间"
+      },
+      "systemtype": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序系统类别 0 宿主 1 普通"
+      },
+      "canoffline": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否支持离线访问"
+      }
+    }
+  },
+  "OwnmpweexModel": {
+    "description": "小程序关注用户模型",
+    "type": "object",
+    "properties": {
+      "mpid": {
+        "type": "string",
+        "description": "小程序标识id"
+      },
+      "mininame": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "logo": {
+        "type": "string",
+        "description": "小程序图标"
+      },
+      "category": {
+        "type": "string",
+        "description": "小程序分类"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序主体信息"
+      },
+      "mpdesc": {
+        "type": "string",
+        "description": "小程序简介"
+      },
+      "openid": {
+        "type": "string",
+        "description": "小程序开发者id"
+      },
+      "openname": {
+        "type": "string",
+        "description": "小程序开发者"
+      },
+      "appid": {
+        "type": "string",
+        "description": "APPID"
+      },
+      "bsopenid": {
+        "type": "string",
+        "description": "APP商户id"
+      },
+      "bsopenname": {
+        "type": "string",
+        "description": "APP商户名称"
+      },
+      "useat": {
+        "type": "string",
+        "description": "使用时间"
+      },
+      "systemtype": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序系统类别 0 宿主 1 普通"
+      },
+      "canoffline": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否支持离线访问"
+      }
+    }
+  },
+  "MpweexallowModel": {
+    "description": "小程序授权登录模型",
+    "type": "object",
+    "properties": {
+      "vtime": {
+        "type": "integer",
+        "format": "int32",
+        "description": "有效时间 秒"
+      },
+      "accesstoken": {
+        "type": "string",
+        "description": "授权token"
+      }
+    }
+  },
+  "CheckPhonenoModel": {
+    "type": "object",
+    "description": "手机号验证模型",
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "令牌"
+      }
+    }
+  },
+  "UnionPayrecordModel": {
+    "type": "object",
+    "description": "订单模型",
+    "properties": {
+      "orderid": {
+        "type": "string",
+        "description": "商户订单号"
+      },
+      "tradeno": {
+        "type": "string",
+        "description": "交易流水号"
+      },
+      "mpid": {
+        "type": "string",
+        "description": "小程序唯一标识"
+      },
+      "mpname": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "orderamount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "订单金额 单位： 分"
+      },
+      "payamount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "支付金额 单位： 分"
+      },
+      "uniqueorderno": {
+        "type": "string",
+        "description": "第三方订单号"
+      },
+      "status": {
+        "type": "string",
+        "description": "订单状态  PROCESSING：待支付;CLOSE：订单关闭;REJECT：订单拒绝;TIME_OUT：订单过期;SUCCESS：订单成功;REPEALED：撤销完成;REVOKED：订单取消;REVERSAL：交易冲正"
+      },
+      "creatat": {
+        "type": "string",
+        "description": "下单时间"
+      },
+      "paysuccessdate": {
+        "type": "string",
+        "description": "完成时间"
+      },
+      "goodsparamext": {
+        "type": "string",
+        "description": "商品拓展信息"
+      }
+    }
+  },
+  "MaintenanceModel": {
+    "type": "object",
+    "description": "小程序维护信息模型",
+    "properties": {
+      "reason": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序维护原因 1.更新维护 2.系统故障 3.其他原因"
+      },
+      "istime": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否显示恢复时间 1 显示 2不显示"
+      },
+      "describes": {
+        "type": "string",
+        "description": "维护描述"
+      },
+      "extra": {
+        "type": "string",
+        "description": "扩展字段"
+      },
+      "beginat": {
+        "type": "string",
+        "description": "开始时间"
+      },
+      "endat": {
+        "type": "string",
+        "description": "结束时间"
+      },
+      "creatat": {
+        "type": "string",
+        "description": "创建时间"
+      }
+    }
+  },
+  "UserInfoModel": {
+    "type": "object",
+    "description": "用户资料模型",
+    "properties": {
+      "unionid": {
+        "type": "string",
+        "description": "用户唯一标识"
+      },
+      "phoneno": {
+        "type": "string",
+        "description": "手机号码"
+      },
+      "realname": {
+        "type": "string",
+        "description": "真实姓名"
+      },
+      "gender": {
+        "type": "integer",
+        "format": "int32",
+        "description": "性别 0女 1男 2未设置"
+      },
+      "idtype": {
+        "type": "string",
+        "description": "证件类型 01 身份证"
+      },
+      "idno": {
+        "type": "string",
+        "description": "证件号"
+      },
+      "nickname": {
+        "type": "string",
+        "description": "昵称"
+      },
+      "avatar": {
+        "type": "string",
+        "description": "头像"
+      },
+      "bankno": {
+        "type": "string",
+        "description": "银行卡号 多个逗号隔开"
+      }
+    }
+  },
+  "RefundRecordModel": {
+    "type": "object",
+    "description": "订单模型",
+    "properties": {
+      "orderid": {
+        "type": "string",
+        "description": "商户订单号"
+      },
+      "refundrequestid": {
+        "type": "string",
+        "description": "退款请求号"
+      },
+      "refundamount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "退款金额 单位：分"
+      },
+      "description": {
+        "type": "string",
+        "description": "退款说明"
+      },
+      "uniquerefundno": {
+        "type": "string",
+        "description": "退款流水号"
+      },
+      "residualamount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "剩余可退款金额 单位： 分"
+      },
+      "refundrequestdate": {
+        "type": "string",
+        "description": "退款请求时间"
+      },
+      "refundsuccessdate": {
+        "type": "string",
+        "description": "退款成功时间"
+      },
+      "errormessage": {
+        "type": "string",
+        "description": "退款失败原因"
+      }
+    }
+  },
+  "SearchMpweexModel": {
+    "type": "object",
+    "properties": {
+      "appid": {
+        "type": "string",
+        "description": "APPID"
+      },
+      "bsopenid": {
+        "type": "string",
+        "description": "APP商户id"
+      },
+      "bsopenname": {
+        "type": "string",
+        "description": "APP商户名称"
+      },
+      "mpid": {
+        "type": "string",
+        "description": "小程序id"
+      },
+      "mininame": {
+        "type": "string",
+        "description": "小程序名称"
+      },
+      "logo": {
+        "type": "string",
+        "description": "小程序图标"
+      },
+      "category": {
+        "type": "string",
+        "description": "小程序分类"
+      },
+      "companyname": {
+        "type": "string",
+        "description": "小程序主体信息"
+      },
+      "mpdesc": {
+        "type": "string",
+        "description": "小程序简介"
+      },
+      "systemtype": {
+        "type": "integer",
+        "format": "int32",
+        "description": "小程序系统类别 0 宿主 1 普通"
+      },
+      "canoffline": {
+        "type": "integer",
+        "format": "int32",
+        "description": "是否支持离线访问"
+      }
+    }
+  }
+}

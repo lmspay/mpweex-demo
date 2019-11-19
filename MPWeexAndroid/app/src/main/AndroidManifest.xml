@@ -19,6 +19,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ApiDataShowActivity" />
+        <activity android:name=".ApiExampleActivity" />
+        <activity android:name=".HAdsActivity" />
+
         <!-- 高德地图key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"

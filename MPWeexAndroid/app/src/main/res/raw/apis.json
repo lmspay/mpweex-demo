@@ -1,0 +1,126 @@
+{
+  "getRecommendList": [
+    {
+      "name": "offset",
+      "type": "int",
+      "desc": "当前数据偏移"
+    },
+    {
+      "name": "limit",
+      "type": "int",
+      "desc": "获取条数"
+    }
+  ],
+  "searchMP": [
+    {
+      "name": "name",
+      "type": "String",
+      "desc": "小程序名称"
+    },
+    {
+      "name": "offset",
+      "type": "int",
+      "desc": "当前数据偏移"
+    },
+    {
+      "name": "limit",
+      "type": "int",
+      "desc": "获取条数"
+    }
+  ],
+  "getRecentMPList": [
+    {
+      "name": "offset",
+      "type": "int",
+      "desc": "当前数据偏移"
+    },
+    {
+      "name": "limit",
+      "type": "int",
+      "desc": "获取条数"
+    }
+  ],
+  "getMyMPList": [
+    {
+      "name": "offset",
+      "type": "int",
+      "desc": "当前数据偏移"
+    },
+    {
+      "name": "limit",
+      "type": "int",
+      "desc": "获取条数"
+    }
+  ],
+  "addFootprint1": [
+    {
+      "name": "mpid",
+      "type": "String",
+      "desc": "小程序ID"
+    },
+    {
+      "name": "type",
+      "type": "int",
+      "desc": "操作类型\n1 添加我的小程序\n2 移除我的小程序"
+    }
+  ],
+  "addFootprint2": [
+    {
+      "name": "mpid",
+      "type": "String",
+      "desc": "小程序ID"
+    },
+    {
+      "name": "type",
+      "type": "int",
+      "desc": "操作类型\n1 添加我的小程序\n2 移除我的小程序"
+    }
+  ],
+  "openAccount": [
+    {
+      "name": "platformuid",
+      "type": "String",
+      "desc": "APP商户应用的用户ID(必填)"
+    },
+    {
+      "name": "phoneno",
+      "type": "String",
+      "desc": "手机号码(必填)"
+    },
+    {
+      "name": "realname",
+      "type": "String",
+      "desc": "真实姓名"
+    },
+    {
+      "name": "gender",
+      "type": "int",
+      "desc": "性别 0女 1男 2未设置"
+    },
+    {
+      "name": "idtype",
+      "type": "String",
+      "desc": "证件类型 01 身份证"
+    },
+    {
+      "name": "idno",
+      "type": "String",
+      "desc": "证件号"
+    },
+    {
+      "name": "nickname",
+      "type": "String",
+      "desc": "昵称"
+    },
+    {
+      "name": "avatar",
+      "type": "String",
+      "desc": "头像"
+    },
+    {
+      "name": "bankno",
+      "type": "String",
+      "desc": "银行卡号，多个逗号隔开"
+    }
+  ]
+}

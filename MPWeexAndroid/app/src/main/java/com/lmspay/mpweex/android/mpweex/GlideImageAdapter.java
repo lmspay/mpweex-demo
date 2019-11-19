@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweex.android.mpweex;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -7,6 +7,10 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.lmspay.mpweex.MPWeexSDK;
+import com.lmspay.mpweex.android.mpweex.AmapGeoAdapter;
+import com.lmspay.mpweex.android.mpweex.DefaultWebSocketAdapterFactory;
+import com.lmspay.mpweex.android.mpweex.GlideImageAdapter;
+import com.lmspay.mpweex.android.mpweex.UserInfoAdpater;
 import com.taobao.weex.InitConfig;
 
 import java.util.List;
@@ -18,8 +22,8 @@ public class App extends MultiDexApplication {
 
         String curProcessName = getProcessName(this, android.os.Process.myPid());
         if(curProcessName != null && curProcessName.equalsIgnoreCase(this.getPackageName())) {
-            MPWeexSDK.getInstance().setBasePath("mpweex api host");
-            MPWeexSDK.getInstance().setAppId("your appid");
+            MPWeexSDK.getInstance().setBasePath(Constants.MPHOST);
+            MPWeexSDK.getInstance().setAppId(Constants.APPID);
 
             // 初始化mpweex
             InitConfig initConfig = new InitConfig.Builder()

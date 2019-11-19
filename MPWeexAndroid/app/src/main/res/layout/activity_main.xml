@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/jumpToMP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jump To MP" />
-
-    <Button
-        android:id="@+id/openAcc"
-        android:layout_marginTop="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open Account" />
-
-</LinearLayout>
+</ListView>

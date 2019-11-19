@@ -90,8 +90,6 @@
   public *;
 }
 
--keep class io.swagger.client.**{*;}
-
 # weex
 -keep class com.taobao.weex.bridge.**{*;}
 -keep class com.taobao.weex.dom.**{*;}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666666"
+        android:background="#E8CA03"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:text="本页面数据通过调用`获取推荐的小程序`SDK接口获得，获取最近使用及我的小程序与本例程类似。" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mpList"
+        android:background="#F2F2F2"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
