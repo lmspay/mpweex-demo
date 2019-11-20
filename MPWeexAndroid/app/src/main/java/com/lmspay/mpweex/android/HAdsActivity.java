@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HAdsActivity extends AppCompatActivity {
-    private WXAdsView mRecommendAdsView_4X4;
-    private WXAdsView mRecommendAdsView_4X8;
+    private WXAdsView mRecommendAdsView_1X4;
+    private WXAdsView mRecommendAdsView_2X4;
 
-    private WXAdsView mRecentAdsView_4X4;
-    private WXAdsView mRecentAdsView_4X8;
+    private WXAdsView mRecentAdsView_1X4;
+    private WXAdsView mRecentAdsView_2X4;
 
-    private WXAdsView mMyAdsView_4X4;
-    private WXAdsView mMyAdsView_4X8;
+    private WXAdsView mMyAdsView_1X4;
+    private WXAdsView mMyAdsView_2X4;
 
     private List<WXAdsView> mAdsViews;
 
@@ -35,29 +35,29 @@ public class HAdsActivity extends AppCompatActivity {
 
         mAdsViews = new ArrayList<>();
 
-        mRecommendAdsView_4X4 = findViewById(R.id.recommendMP_4X4);
-        mAdsViews.add(mRecommendAdsView_4X4);
-        setupAds(mRecommendAdsView_4X4, 4, "/mpweex/getrecommendlist");
+        mRecommendAdsView_1X4 = findViewById(R.id.recommendMP_1X4);
+        mAdsViews.add(mRecommendAdsView_1X4);
+        setupAds(mRecommendAdsView_1X4, 4, "/mpweex/getrecommendlist");
 
-        mRecommendAdsView_4X8 = findViewById(R.id.recommendMP_4X8);
-        mAdsViews.add(mRecommendAdsView_4X8);
-        setupAds(mRecommendAdsView_4X8, 8, "/mpweex/getrecommendlist");
+        mRecommendAdsView_2X4 = findViewById(R.id.recommendMP_2X4);
+        mAdsViews.add(mRecommendAdsView_2X4);
+        setupAds(mRecommendAdsView_2X4, 8, "/mpweex/getrecommendlist");
 
-        mRecentAdsView_4X4 = findViewById(R.id.recentMP_4X4);
-        mAdsViews.add(mRecentAdsView_4X4);
-        setupAds(mRecentAdsView_4X4, 4, "/users/getaccesslog");
+        mRecentAdsView_1X4 = findViewById(R.id.recentMP_1X4);
+        mAdsViews.add(mRecentAdsView_1X4);
+        setupAds(mRecentAdsView_1X4, 4, "/users/getaccesslog");
 
-        mRecentAdsView_4X8 = findViewById(R.id.recentMP_4X8);
-        mAdsViews.add(mRecentAdsView_4X8);
-        setupAds(mRecentAdsView_4X8, 8, "/users/getaccesslog");
+        mRecentAdsView_2X4 = findViewById(R.id.recentMP_2X4);
+        mAdsViews.add(mRecentAdsView_2X4);
+        setupAds(mRecentAdsView_2X4, 8, "/users/getaccesslog");
 
-        mMyAdsView_4X4 = findViewById(R.id.myMP_4X4);
-        mAdsViews.add(mMyAdsView_4X4);
-        setupAds(mMyAdsView_4X4, 4, "/users/getownmpweexlist");
+        mMyAdsView_1X4 = findViewById(R.id.myMP_1X4);
+        mAdsViews.add(mMyAdsView_1X4);
+        setupAds(mMyAdsView_1X4, 4, "/users/getownmpweexlist");
 
-        mMyAdsView_4X8 = findViewById(R.id.myMP_4X8);
-        mAdsViews.add(mMyAdsView_4X8);
-        setupAds(mMyAdsView_4X8, 8, "/users/getownmpweexlist");
+        mMyAdsView_2X4 = findViewById(R.id.myMP_2X4);
+        mAdsViews.add(mMyAdsView_2X4);
+        setupAds(mMyAdsView_2X4, 8, "/users/getownmpweexlist");
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
