@@ -23,6 +23,10 @@
         <activity android:name=".ApiExampleActivity" />
         <activity android:name=".HAdsActivity" />
 
+        <activity android:name=".yct.YCTDemoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/mpweexAppTheme" />
+
         <!-- 高德地图key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"

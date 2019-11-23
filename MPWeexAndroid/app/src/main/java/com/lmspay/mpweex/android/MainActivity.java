@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lmspay.mpweex.MPWeexSDK;
+import com.lmspay.mpweex.android.yct.YCTDemoActivity;
 import com.lmspay.mpweex.ui.WXHostActivity;
 import com.taobao.weex.utils.WXLogUtils;
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mExamplesList.add(new String[]{"group", "其它"});
         mExamplesList.add(new String[]{"Others", "跳转至小程序", "jumpToMP"});
         mExamplesList.add(new String[]{"Others", "接口数据展示", "apiDataShow"});
+        mExamplesList.add(new String[]{"Others", "羊城通", "gzyct"});
 
         GroupListAdapter adapter = new GroupListAdapter(this, mExamplesList);
         mListView.setAdapter(adapter);
@@ -113,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
                                 1, 1);
                     }else if("apiDataShow".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, ApiDataShowActivity.class);
+                        startActivity(intent);
+                    }else if("gzyct".equals(itemArr[2])) {
+                        Intent intent = new Intent(MainActivity.this, YCTDemoActivity.class);
                         startActivity(intent);
                     }
                 }
