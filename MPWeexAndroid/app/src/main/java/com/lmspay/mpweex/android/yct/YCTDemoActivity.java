@@ -18,12 +18,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
-import com.liaoinstan.springview.container.MPWeexHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.lmspay.mpweex.MPWeexSDK;
 import com.lmspay.mpweex.android.R;
 import com.lmspay.mpweex.ui.WXHostActivity;
 import com.lmspay.mpweex.util.StatusBarCompat;
+import com.lmspay.mpweexheader.MPWeexHeader;
 import com.taobao.weex.dom.CSSShorthand;
 import com.taobao.weex.ui.view.border.BorderDrawable;
 
@@ -146,9 +146,8 @@ public class YCTDemoActivity extends AppCompatActivity {
         });
 
         mMPWeexHeader = mpWeexHeader;
-        if(mMPWeexHeader != null) {
-            mMPWeexHeader.onActivityCreate();
-        }
+        mMPWeexHeader.onActivityCreate();
+        mMPWeexHeader.setBackgroundColor(0xFF252239);
     }
 
     public void onMPClicked(View view) {
@@ -242,5 +241,61 @@ public class YCTDemoActivity extends AppCompatActivity {
                 (startR + (int) (fraction * (endR - startR))),
                 (startG + (int) (fraction * (endG - startG))),
                 (startB + (int) (fraction * (endB - startB))));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityResume();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityPause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityStart();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityStop();
+        }
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityDestroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(mMPWeexHeader != null) {
+            mMPWeexHeader.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }
