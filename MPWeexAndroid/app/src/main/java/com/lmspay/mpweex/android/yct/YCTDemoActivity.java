@@ -18,12 +18,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
-import com.liaoinstan.springview.widget.SpringView;
 import com.lmspay.mpweex.MPWeexSDK;
 import com.lmspay.mpweex.android.R;
 import com.lmspay.mpweex.ui.WXHostActivity;
 import com.lmspay.mpweex.util.StatusBarCompat;
 import com.lmspay.mpweexheader.MPWeexHeader;
+import com.lmspay.springview.widget.SpringView;
 import com.taobao.weex.dom.CSSShorthand;
 import com.taobao.weex.ui.view.border.BorderDrawable;
 
