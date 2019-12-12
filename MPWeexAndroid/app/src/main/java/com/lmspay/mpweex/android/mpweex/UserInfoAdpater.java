@@ -10,7 +10,7 @@ import com.lmspay.mpweex.model.WXUserInfoModel;
 public class UserInfoAdpater implements IWXUserInfoAdapter {
 
     @Override
-    public WXUserInfoModel getUserInfo() {
+    public WXUserInfoModel getUserInfo(Activity activity) {
         WXUserInfoModel userInfoModel = new WXUserInfoModel();
         userInfoModel.setGender(0);
         userInfoModel.setNickname("小众");

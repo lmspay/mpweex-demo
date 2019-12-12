@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Looper;
+import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.widget.ImageView;
@@ -119,7 +120,7 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
                 imageReq.centerCrop();
             }
             if(strategy.placeHolderResource != -1) {
-                imageReq.placeholder(strategy.placeHolderResource);
+                imageReq.placeholder(AppCompatResources.getDrawable(context, strategy.placeHolderResource));
             }
             if(strategy.sizeWidth != -1 && strategy.sizeHeight != -1) {
                 imageReq.override(strategy.sizeWidth, strategy.sizeHeight);

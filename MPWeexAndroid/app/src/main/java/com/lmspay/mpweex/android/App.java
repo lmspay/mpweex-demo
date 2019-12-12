@@ -5,6 +5,7 @@ package com.lmspay.mpweex.android;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.lmspay.mpweex.MPWeexSDK;
 import com.lmspay.mpweex.android.mpweex.AmapGeoAdapter;
@@ -16,6 +17,10 @@ import com.taobao.weex.InitConfig;
 import java.util.List;
 
 public class App extends MultiDexApplication {
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
