@@ -117,7 +117,7 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
                 MPWeexSDK.getInstance().searchMP("众", 0, 4, this);
                 break;
             case "openAccount":
-                MPWeexSDK.getInstance().openAccount(
+                MPWeexSDK.getInstance().onLogin(
                         Constants.DEFAULT_APP_UID,
                         Constants.DEFAULT_APP_PHONE,
                         null, 1, null, null,

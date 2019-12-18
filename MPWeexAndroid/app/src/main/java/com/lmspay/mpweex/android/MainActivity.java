@@ -17,7 +17,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.lmspay.mpweex.MPWeexSDK;
 import com.lmspay.mpweex.android.yct.YCTDemoActivity;
 import com.lmspay.mpweex.ui.WXHostActivity;
-import com.taobao.weex.utils.WXLogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mExamplesList.add(new String[]{"group", "API"});
         mExamplesList.add(new String[]{"API", "搜索小程序(游客)", "searchMP", "SearchMpweexModel"});
         mExamplesList.add(new String[]{"API", "获取推荐的小程序(游客)", "getRecommendList", "RecommendModel"});
-        mExamplesList.add(new String[]{"API", "开户(游客，幂等)", "openAccount", "OpenAccountModel"});
+        mExamplesList.add(new String[]{"API", "登录信息同步(游客，幂等)", "openAccount", "OpenAccountModel"});
 
         mExamplesList.add(new String[]{"API", "获取我的小程序", "getMyMPList", "OwnmpweexModel"});
         mExamplesList.add(new String[]{"API", "获取最近使用的小程序", "getRecentMPList", "AccesslogModel"});
@@ -125,27 +124,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 实现开户，程序内应登录成功后调用，Playground默认用户调用
-        MPWeexSDK.getInstance().openAccount(Constants.DEFAULT_APP_UID, Constants.DEFAULT_APP_PHONE,
+        MPWeexSDK.getInstance().onLogin(Constants.DEFAULT_APP_UID, Constants.DEFAULT_APP_PHONE,
                 null, null, null, null,
                 null, null, null, new MPWeexSDK.ResponseCallback() {
                     @Override
                     public void onResponse(final boolean ok, int statusCode, final Object data, Map<String, String> headers) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(ok && data instanceof JSONObject) {
-                                    try {
-                                        JSONObject resObj = (JSONObject) data;
-                                        MPWeexSDK.getInstance().setUnionId(resObj.getString("unionid"));
-                                        MPWeexSDK.getInstance().setSalt(resObj.getString("salt"));
-                                        MPWeexSDK.getInstance().setSignKey(resObj.getString("privatekey"));
-                                    } catch (Exception e) {
-                                        WXLogUtils.e("openAccount exception: " + e.toString());
-                                    }
-                                }
-                            }
-                        });
-
+                        // your code if needed.
                     }
                 });
     }
