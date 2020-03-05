@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lmspay.mpweex.android">
+    package="com.lmspay.mpweexsdk.example">
 
     <application
-        android:name=".App"
+        android:name="com.lmspay.mpweexsdk.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,21 +11,23 @@
         android:networkSecurityConfig="@xml/network_security"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.lmspay.mpweexsdk.example.MainActivity" />
+
+        <activity android:name="com.lmspay.mpweexsdk.example.ApiDataShowActivity" />
+        <activity android:name="com.lmspay.mpweexsdk.example.ApiExampleActivity" />
+        <activity android:name="com.lmspay.mpweexsdk.example.HAdsActivity" />
+        <activity android:name="com.lmspay.mpweexsdk.example.SecondFloorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/mpweexAppTheme" />
+
+        <activity android:name="com.lmspay.mpweexsdk.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/mpweexAppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ApiDataShowActivity" />
-        <activity android:name=".ApiExampleActivity" />
-        <activity android:name=".HAdsActivity" />
-
-        <activity android:name=".yct.YCTDemoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/mpweexAppTheme" />
 
         <!-- 高德地图key -->
         <meta-data

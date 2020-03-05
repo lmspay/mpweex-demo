@@ -1,4 +1,6 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk.example;
+
+// Created by saint on 2019-11-13.
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,15 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.lmspay.mpweex.MPWeexSDK;
-import com.lmspay.mpweex.android.yct.YCTDemoActivity;
-import com.lmspay.mpweex.ui.WXHostActivity;
+import com.lmspay.mpweexsdk.Constants;
+
+import com.lmspay.zq.MPWeexSDK;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 public class MainActivity extends AppCompatActivity {
     private ListView mListView;
@@ -40,18 +40,19 @@ public class MainActivity extends AppCompatActivity {
         mExamplesList.add(new String[]{"group", "API"});
         mExamplesList.add(new String[]{"API", "搜索小程序(游客)", "searchMP", "SearchMpweexModel"});
         mExamplesList.add(new String[]{"API", "获取推荐的小程序(游客)", "getRecommendList", "RecommendModel"});
-        mExamplesList.add(new String[]{"API", "登录信息同步(游客，幂等)", "openAccount", "OpenAccountModel"});
+        mExamplesList.add(new String[]{"API", "登录信息同步(游客，幂等)", "onLogin", "OpenAccountModel"});
 
-        mExamplesList.add(new String[]{"API", "获取我的小程序", "getMyMPList", "OwnmpweexModel"});
-        mExamplesList.add(new String[]{"API", "获取最近使用的小程序", "getRecentMPList", "AccesslogModel"});
-        mExamplesList.add(new String[]{"API", "添加到我的小程序", "addFootprint1", "CommonModel"});
-        mExamplesList.add(new String[]{"API", "从我的小程序中移除", "addFootprint2", "CommonModel"});
+        mExamplesList.add(new String[]{"API", "获取我关注的", "getMyMPList", "OwnmpweexModel"});
+        mExamplesList.add(new String[]{"API", "获取最近使用的", "getRecentMPList", "AccesslogModel"});
+        mExamplesList.add(new String[]{"API", "添加到我关注的", "addFootprint1", "CommonModel"});
+        mExamplesList.add(new String[]{"API", "从我关注的中移除", "addFootprint2", "CommonModel"});
 
         mExamplesList.add(new String[]{"group", "Pages"});
-        mExamplesList.add(new String[]{"Pages", "最近使用的小程序", "/pages/setting/mpList.js", "/users/getaccesslog"});
-        mExamplesList.add(new String[]{"Pages", "我的小程序", "/pages/setting/mpList.js", "/users/getownmpweexlist"});
-        mExamplesList.add(new String[]{"Pages", "推荐的小程序", "/pages/setting/mpList.js", "/mpweex/getrecommendlist"});
-        mExamplesList.add(new String[]{"Pages", "搜索小程序", "/pages/search.js", ""});
+        mExamplesList.add(new String[]{"Pages", "小程序主页", "index"});
+        mExamplesList.add(new String[]{"Pages", "最近使用", "recent"});
+        mExamplesList.add(new String[]{"Pages", "我关注的", "mymp"});
+        mExamplesList.add(new String[]{"Pages", "推荐的", "recommend"});
+        mExamplesList.add(new String[]{"Pages", "搜索小程序", "search"});
 
         mExamplesList.add(new String[]{"group", "Widget"});
         mExamplesList.add(new String[]{"Widget", "水平方向广告位", "hads"});
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mExamplesList.add(new String[]{"group", "其它"});
         mExamplesList.add(new String[]{"Others", "跳转至小程序", "jumpToMP"});
         mExamplesList.add(new String[]{"Others", "接口数据展示", "apiDataShow"});
-        mExamplesList.add(new String[]{"Others", "羊城通", "gzyct"});
+        mExamplesList.add(new String[]{"Others", "仿微信下拉", "secondFloor"});
 
         GroupListAdapter adapter = new GroupListAdapter(this, mExamplesList);
         mListView.setAdapter(adapter);
@@ -75,31 +76,10 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("model", itemArr[3]);
                     startActivity(intent);
                 }else if("Pages".equals(itemArr[0])) {
-                    Intent intent = new Intent(MainActivity.this, WXHostActivity.class);
-                    // 设置为系统小程序
-                    JSONObject resObj = new JSONObject();
-                    // 小程序ID
-                    resObj.put("mpid", MPWeexSDK.SYSTEM_MPID);
-                    // 小程序LOGO
-                    resObj.put("logo", "images/AAFKqgAAAW3yx8QhAQI");
-                    // 小程序类别为宿主
-                    resObj.put("systemtype", 0);
-
-                    // 指定标题
-                    resObj.put("title", itemArr[1]);
-                    // 指定页面
-                    resObj.put("page", itemArr[2]);
-                    // 加载小程序信息，确保系统小程序正常下载
-                    intent.putExtra("loadMpInfo", true);
-                    intent.putExtra("params", resObj);
-
-                    // 指定页面参数
-                    JSONObject pageParams = new JSONObject();
-                    // 指定API
-                    pageParams.put("apiUrl", itemArr[3]);
-                    intent.putExtra("pageParams", pageParams.toJSONString());
-
-                    startActivity(intent);
+                    MPWeexSDK.MPPage mpPage = MPWeexSDK.MPPage.valuesOf(itemArr[2]);
+                    if(mpPage != null) {
+                        MPWeexSDK.getInstance().jumpToPage(MainActivity.this, mpPage);
+                    }
                 }else if("Widget".equals(itemArr[0])) {
                     if("hads".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, HAdsActivity.class);
@@ -110,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
                         MPWeexSDK.getInstance().jumpToMP(
                                 MainActivity.this,
                                 "MPAAABa7vz87hIvbIAq1lG",
-                                "images/AAFLlQAAAWzlpHpnAgI",
+                                MPWeexSDK.getInstance().getSystemMPIcon(),
                                 1, 1);
                     }else if("apiDataShow".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, ApiDataShowActivity.class);
                         startActivity(intent);
-                    }else if("gzyct".equals(itemArr[2])) {
-                        Intent intent = new Intent(MainActivity.this, YCTDemoActivity.class);
+                    }else if("secondFloor".equals(itemArr[2])) {
+                        Intent intent = new Intent(MainActivity.this, SecondFloorActivity.class);
                         startActivity(intent);
                     }
                 }

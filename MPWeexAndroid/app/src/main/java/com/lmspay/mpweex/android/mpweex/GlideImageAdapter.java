@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android.mpweex;
+package com.lmspay.mpweexsdk.mpweex;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,11 +17,12 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.taobao.weex.WXSDKManager;
-import com.taobao.weex.adapter.IWXImgLoaderAdapter;
-import com.taobao.weex.common.WXImageStrategy;
-import com.taobao.weex.dom.WXImageQuality;
-import com.taobao.weex.utils.WXLogUtils;
+
+import org.apache.weex.WXSDKManager;
+import org.apache.weex.adapter.IWXImgLoaderAdapter;
+import org.apache.weex.common.WXImageStrategy;
+import org.apache.weex.dom.WXImageQuality;
+import org.apache.weex.utils.WXLogUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

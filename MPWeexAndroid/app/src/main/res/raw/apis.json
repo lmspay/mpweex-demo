@@ -76,7 +76,7 @@
       "desc": "操作类型\n1 添加我的小程序\n2 移除我的小程序"
     }
   ],
-  "openAccount": [
+  "onLogin": [
     {
       "name": "platformuid",
       "type": "String",

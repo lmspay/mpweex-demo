@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk.example;
 
 // Created by saint on 2019-11-13.
 
@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,10 +38,12 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.oss.common.utils.IOUtils;
-import com.lmspay.mpweex.MPWeexSDK;
+import com.lmspay.mpweexsdk.Constants;
+import com.lmspay.zq.MPWeexSDK;
 import com.yuyh.jsonviewer.library.JsonRecyclerView;
 
 import java.util.Map;
+
 
 public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.ResponseCallback {
     private static final int ROUND_TYPE_LEFT_TOP = 0x01;
@@ -114,9 +117,9 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
                 MPWeexSDK.getInstance().getRecommendList(0, 4, this);
                 break;
             case "searchMP":
-                MPWeexSDK.getInstance().searchMP("众", 0, 4, this);
+                MPWeexSDK.getInstance().searchMP("程", 0, 4, this);
                 break;
-            case "openAccount":
+            case "onLogin":
                 MPWeexSDK.getInstance().onLogin(
                         Constants.DEFAULT_APP_UID,
                         Constants.DEFAULT_APP_PHONE,
@@ -276,20 +279,24 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
     private Dialog createDialogAndShow(
             Context context, String title, Spanned message,
             String ok) {
-        final Dialog dialog = new Dialog(context, com.taobao.weex.R.style.mpweexDialogTheme);
+        final Dialog dialog = new Dialog(context, com.lmspay.zq.R.style.mpweexDialogTheme);
 
         View view = LayoutInflater.from(context).inflate(
-                com.taobao.weex.R.layout.mpweex_dialog, null);
+                com.lmspay.zq.R.layout.mpweex_dialog, null);
         dialog.setContentView(view);
-        view.setBackground(createBgDrawable(context, 0x0F, false));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackground(createBgDrawable(context, 0x0F, false));
+        }else {
+            view.setBackgroundDrawable(createBgDrawable(context, 0x0F, false));
+        }
 
-        TextView titleTV = view.findViewById(com.taobao.weex.R.id.mpweexDialogTitle);
-        TextView messageTV = view.findViewById(com.taobao.weex.R.id.mpweexDialogMessage);
+        TextView titleTV = view.findViewById(com.lmspay.zq.R.id.mpweexDialogTitle);
+        TextView messageTV = view.findViewById(com.lmspay.zq.R.id.mpweexDialogMessage);
 
-        Button cancelBtn = view.findViewById(com.taobao.weex.R.id.mpweexDialogCancelBtn);
-        Button okBtn = view.findViewById(com.taobao.weex.R.id.mpweexDialogOKBtn);
+        Button cancelBtn = view.findViewById(com.lmspay.zq.R.id.mpweexDialogCancelBtn);
+        Button okBtn = view.findViewById(com.lmspay.zq.R.id.mpweexDialogOKBtn);
 
-        final EditText editText = view.findViewById(com.taobao.weex.R.id.mpweexDialogEdit);
+        final EditText editText = view.findViewById(com.lmspay.zq.R.id.mpweexDialogEdit);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
@@ -335,16 +342,32 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
         if(okBtn.getVisibility() == View.VISIBLE) {
             if(cancelBtn.getVisibility() == View.VISIBLE) {
                 // 两个按钮都显示
-                okBtn.setBackground(createBgDrawable(context, ROUND_TYPE_RIGHT_BOTTOM, true));
-                cancelBtn.setBackground(createBgDrawable(context, ROUND_TYPE_LEFT_BOTTOM, true));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    okBtn.setBackground(createBgDrawable(context, ROUND_TYPE_RIGHT_BOTTOM, true));
+                    cancelBtn.setBackground(createBgDrawable(context, ROUND_TYPE_LEFT_BOTTOM, true));
+                }else {
+                    okBtn.setBackgroundDrawable(createBgDrawable(context, ROUND_TYPE_RIGHT_BOTTOM, true));
+                    cancelBtn.setBackgroundDrawable(createBgDrawable(context, ROUND_TYPE_LEFT_BOTTOM, true));
+                }
+
             }else {
-                okBtn.setBackground(createBgDrawable(context,
-                        ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    okBtn.setBackground(createBgDrawable(context,
+                            ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                }else {
+                    okBtn.setBackgroundDrawable(createBgDrawable(context,
+                            ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                }
             }
         }else {
             if(cancelBtn.getVisibility() == View.VISIBLE) {
-                cancelBtn.setBackground(createBgDrawable(context,
-                        ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    cancelBtn.setBackground(createBgDrawable(context,
+                            ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                }else {
+                    cancelBtn.setBackgroundDrawable(createBgDrawable(context,
+                            ROUND_TYPE_LEFT_BOTTOM|ROUND_TYPE_RIGHT_BOTTOM, true));
+                }
             }
         }
 
@@ -372,7 +395,7 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
         GradientDrawable drawable = new GradientDrawable();
         drawable.setColor(color);
 
-        float radius = context.getResources().getDimension(com.taobao.weex.R.dimen.mpweex_dialog_radius);
+        float radius = context.getResources().getDimension(com.lmspay.zq.R.dimen.mpweex_dialog_radius);
         float [] radii = new float[] {0,0,0,0,0,0,0,0};
 
         if((roundType & ROUND_TYPE_LEFT_TOP) > 0) {
@@ -401,16 +424,16 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
             stateListDrawable.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled},
                     createBgDrawable(context, roundType,
                             context.getResources().getColor(
-                                    com.taobao.weex.R.color.mpweexDialogPressedBgColor)));
+                                    com.lmspay.zq.R.color.mpweexDialogPressedBgColor)));
             stateListDrawable.addState(new int[]{android.R.attr.state_enabled},
                     createBgDrawable(context, roundType,
                             context.getResources().getColor(
-                                    com.taobao.weex.R.color.mpweexDialogBgColor)));
+                                    com.lmspay.zq.R.color.mpweexDialogBgColor)));
             return stateListDrawable;
         }else {
             return createBgDrawable(context, roundType,
                     context.getResources().getColor(
-                            com.taobao.weex.R.color.mpweexDialogBgColor));
+                            com.lmspay.zq.R.color.mpweexDialogBgColor));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk.example;
 
 import org.junit.Test;
 

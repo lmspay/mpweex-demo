@@ -1,11 +1,11 @@
-package com.lmspay.mpweex.android.mpweex;
+package com.lmspay.mpweexsdk.mpweex;
 
 // Created by saint on 2019-10-18.
 
 import android.app.Activity;
 
-import com.lmspay.mpweex.adapter.IWXUserInfoAdapter;
-import com.lmspay.mpweex.model.WXUserInfoModel;
+import com.lmspay.zq.adapter.IWXUserInfoAdapter;
+import com.lmspay.zq.model.WXUserInfoModel;
 
 public class UserInfoAdpater implements IWXUserInfoAdapter {
 

@@ -11,7 +11,7 @@ public class Constants {
     public static final String MPHOST = "mpweex api host";
 
     // 默认APP开户UID
-    public static final String DEFAULT_APP_UID = "F1006420";
+    public static final String DEFAULT_APP_UID = "F1000002";
     // 默认APP开户手机号
-    public static final String DEFAULT_APP_PHONE = "13800000000";
+    public static final String DEFAULT_APP_PHONE = "13800000002";
 }

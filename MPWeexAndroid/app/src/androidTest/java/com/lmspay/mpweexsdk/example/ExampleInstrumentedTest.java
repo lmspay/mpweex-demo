@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk.example;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.lmspay.mpweex.android", appContext.getPackageName());
+        assertEquals("com.lmspay.mpweexsdk.android", appContext.getPackageName());
     }
 }

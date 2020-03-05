@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk.example;
 
 // Created by saint on 2019-11-19.
 
@@ -22,12 +22,13 @@ import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.lmspay.mpweex.MPWeexSDK;
-import com.taobao.weex.WXSDKManager;
-import com.taobao.weex.adapter.IWXImgLoaderAdapter;
-import com.taobao.weex.adapter.URIAdapter;
-import com.taobao.weex.common.WXImageStrategy;
-import com.taobao.weex.dom.WXImageQuality;
+import com.lmspay.zq.MPWeexSDK;
+
+import org.apache.weex.WXSDKManager;
+import org.apache.weex.adapter.IWXImgLoaderAdapter;
+import org.apache.weex.adapter.URIAdapter;
+import org.apache.weex.common.WXImageStrategy;
+import org.apache.weex.dom.WXImageQuality;
 
 import java.util.Map;
 

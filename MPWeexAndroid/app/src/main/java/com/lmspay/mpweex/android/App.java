@@ -1,18 +1,21 @@
-package com.lmspay.mpweex.android;
+package com.lmspay.mpweexsdk;
 
 // Created by saint on 2019-09-26.
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
+import android.webkit.WebView;
 
-import com.lmspay.mpweex.MPWeexSDK;
-import com.lmspay.mpweex.android.mpweex.AmapGeoAdapter;
-import com.lmspay.mpweex.android.mpweex.DefaultWebSocketAdapterFactory;
-import com.lmspay.mpweex.android.mpweex.GlideImageAdapter;
-import com.lmspay.mpweex.android.mpweex.UserInfoAdpater;
-import com.taobao.weex.InitConfig;
+import com.lmspay.mpweexsdk.example.BuildConfig;
+import com.lmspay.mpweexsdk.mpweex.AmapGeoAdapter;
+import com.lmspay.mpweexsdk.mpweex.GlideImageAdapter;
+import com.lmspay.mpweexsdk.mpweex.UserInfoAdpater;
+import com.lmspay.zq.MPWeexSDK;
+
+import org.apache.weex.InitConfig;
 
 import java.util.List;
 
@@ -35,7 +38,6 @@ public class App extends MultiDexApplication {
                     .setImgAdapter(new GlideImageAdapter())
                     .setGeoAdapter(new AmapGeoAdapter())
                     .setUserInfoAdapter(new UserInfoAdpater())
-                    .setWebSocketAdapterFactory(new DefaultWebSocketAdapterFactory())
                     .build();
             MPWeexSDK.getInstance().initialize(this, initConfig, BuildConfig.DEBUG);
         } else {

@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android.yct;
+package com.lmspay.mpweexsdk.example;
 
 // Created by saint on 2019-11-23.
 
@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,17 +18,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alibaba.fastjson.JSONObject;
-import com.lmspay.mpweex.MPWeexSDK;
-import com.lmspay.mpweex.android.R;
-import com.lmspay.mpweex.ui.WXHostActivity;
-import com.lmspay.mpweex.util.StatusBarCompat;
 import com.lmspay.mpweexheader.MPWeexHeader;
-import com.lmspay.springview.widget.SpringView;
-import com.taobao.weex.dom.CSSShorthand;
-import com.taobao.weex.ui.view.border.BorderDrawable;
 
-public class YCTDemoActivity extends AppCompatActivity {
+import com.lmspay.springview.widget.SpringView;
+import com.lmspay.zq.MPWeexSDK;
+import com.lmspay.zq.util.StatusBarCompat;
+
+import org.apache.weex.dom.CSSShorthand;
+import org.apache.weex.ui.view.border.BorderDrawable;
+
+
+public class SecondFloorActivity extends AppCompatActivity {
     // 二楼标题栏背景色
     private static final int SECONDFLOOR_NAV_BG_COLOR = 0xFF7488C3;
     // 二楼标题栏前景色
@@ -49,7 +50,7 @@ public class YCTDemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yctdemo);
+        setContentView(R.layout.activity_secondfloor);
 
         mToolbar = findViewById(R.id.mpweexToolbar);
         setSupportActionBar(mToolbar);
@@ -60,7 +61,11 @@ public class YCTDemoActivity extends AppCompatActivity {
         mToolbarBg = new BorderDrawable();
 
         mToolbarBg.setColor(mNavbarBgColor);
-        mToolbar.setBackground(mToolbarBg);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mToolbar.setBackground(mToolbarBg);
+        }else {
+            mToolbar.setBackgroundDrawable(mToolbarBg);
+        }
 
         mSpringView = findViewById(R.id.mpweexRootView);
         View toolbarRoot = findViewById(R.id.mpweexToolbarRoot);
@@ -106,7 +111,7 @@ public class YCTDemoActivity extends AppCompatActivity {
                 mSecondFloorOpened = secondFloorOpened;
                 if(secondFloorOpened) { // 如果是二楼
                     mToolbarBg.setColor(SECONDFLOOR_NAV_BG_COLOR);
-                    float radius = getResources().getDimension(com.taobao.weex.R.dimen.mpweex_space12);
+                    float radius = getResources().getDimension(com.lmspay.zq.R.dimen.mpweex_space12);
                     mToolbarBg.setBorderRadius(CSSShorthand.CORNER.BORDER_TOP_LEFT, radius);
                     mToolbarBg.setBorderRadius(CSSShorthand.CORNER.BORDER_TOP_RIGHT, radius);
 
@@ -153,24 +158,8 @@ public class YCTDemoActivity extends AppCompatActivity {
     public void onMPClicked(View view) {
         // 跳转到小程序页面
 
-
-        Intent intent = new Intent(YCTDemoActivity.this, WXHostActivity.class);
-        // 设置为系统小程序
-        JSONObject resObj = new JSONObject();
-        // 小程序ID
-        resObj.put("mpid", MPWeexSDK.SYSTEM_MPID);
-        // 小程序LOGO
-        resObj.put("logo", "images/AAFKqgAAAW3yx8QhAQI");
-        // 小程序类别为宿主
-        resObj.put("systemtype", 0);
-
-        // 指定页面
-        resObj.put("page", "/pages/wxmp.js");
-        // 加载小程序信息，确保系统小程序正常下载
-        intent.putExtra("loadMpInfo", true);
-        intent.putExtra("params", resObj);
-
-        startActivity(intent);
+        MPWeexSDK.getInstance().jumpToPage(SecondFloorActivity.this,
+                MPWeexSDK.MPPage.PAGE_INDEX);
     }
 
     private void setupToolbar() {

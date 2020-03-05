@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">MPWeexAndroid</string>
+    <string name="app_name">MPWeex</string>
     <string name="str_exec">调用</string>
     <string name="str_field">字段名</string>
     <string name="str_type">类型</string>
     <string name="str_desc">描述</string>
     <string name="str_api_desc">接口详情</string>
+    <string name="app_cpy">Copyright © 2016&#8211;%1$s lmspay.com All Rights Reserved.</string>
+    <string name="app_name_cpy">MPWeex For Android</string>
 </resources>

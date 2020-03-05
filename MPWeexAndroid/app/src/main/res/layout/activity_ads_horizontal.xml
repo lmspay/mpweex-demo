@@ -11,104 +11,53 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
             android:background="#DDDDDD"
             android:textColor="#999999"
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="推荐的小程序 1X4 height (>=80dp)" />
+            android:text="单行推荐位" />
 
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/recommendMP_1X4"
+        <com.lmspay.zq.widget.WXAdsWidget
+            android:id="@+id/mp_row_one"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#F2F2F2" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
             android:background="#DDDDDD"
             android:textColor="#999999"
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="推荐的小程序 2X4 height (>=168dp)" />
+            android:text="两行推荐位" />
 
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/recommendMP_2X4"
+        <com.lmspay.zq.widget.WXAdsWidget
+            android:id="@+id/mp_row_two"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:background="#F2F2F2"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
             android:background="#DDDDDD"
             android:textColor="#999999"
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="最近使用的小程序 1X4 height (>=80dp)" />
+            android:text="三行推荐位" />
 
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/recentMP_1X4"
+        <com.lmspay.zq.widget.WXAdsWidget
+            android:id="@+id/mp_row_three"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#F2F2F2" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="12dp"
-            android:background="#DDDDDD"
-            android:textColor="#999999"
-            android:textSize="14sp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:text="最近使用的小程序 2X4 height (>=168dp)" />
-
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/recentMP_2X4"
-            android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:background="#F2F2F2"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="12dp"
-            android:background="#DDDDDD"
-            android:textColor="#999999"
-            android:textSize="14sp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:text="我的小程序 1X4 height (>=80dp)" />
-
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/myMP_1X4"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#F2F2F2" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="12dp"
-            android:background="#DDDDDD"
-            android:textColor="#999999"
-            android:textSize="14sp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:text="我的小程序 2X4 height (>=168dp)" />
-
-        <com.lmspay.mpweex.ui.WXAdsView
-            android:id="@+id/myMP_2X4"
-            android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:background="#F2F2F2"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

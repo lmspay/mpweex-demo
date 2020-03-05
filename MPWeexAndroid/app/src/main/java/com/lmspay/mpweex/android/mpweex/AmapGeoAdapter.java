@@ -1,4 +1,4 @@
-package com.lmspay.mpweex.android.mpweex;
+package com.lmspay.mpweexsdk.mpweex;
 
 import android.content.Context;
 import android.location.Location;
@@ -10,7 +10,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.DPoint;
-import com.lmspay.mpweex.adapter.IWXGeoAdapter;
+import com.lmspay.zq.adapter.IWXGeoAdapter;
 
 /**
  * Created by saint on 2019/1/21.

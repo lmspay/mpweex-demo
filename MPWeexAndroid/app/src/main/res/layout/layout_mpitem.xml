@@ -9,7 +9,7 @@
     android:padding="4dp"
     android:gravity="center_vertical">
 
-    <com.lmspay.mpweex.widget.clipview.RadiusImageView
+    <com.lmspay.zq.widget.clipview.RadiusImageView
         android:id="@+id/logo"
         android:layout_width="40dp"
         android:layout_height="40dp"
