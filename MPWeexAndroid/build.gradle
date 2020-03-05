@@ -23,8 +23,8 @@ allprojects {
             url 'http://dev.txmpay.com:18081/repository/maven-public/'
             name 'nexus'
             credentials {
-                username = ""
-                password = ""
+                username = "lmsview"
+                password = "Lms.1230"
             }
         }
     }
