@@ -91,29 +91,39 @@
 }
 
 # weex
--keep class com.taobao.weex.bridge.**{*;}
--keep class com.taobao.weex.dom.**{*;}
--keep class com.taobao.weex.adapter.**{*;}
--keep class com.taobao.weex.common.**{*;}
--keep class * implements com.taobao.weex.IWXObject{*;}
--keep class com.taobao.weex.ui.**{*;}
--keep class com.taobao.weex.ui.component.**{*;}
--keep class com.taobao.weex.utils.**{
+-keep class org.apache.weex.bridge.**{*;}
+-keep class org.apache.weex.dom.**{*;}
+-keep class org.apache.weex.layout.**{*;}
+-keep class org.apache.weex.base.**{*;}
+-keep class org.apache.weex.common.**{*;}
+-keep class * implements org.apache.weex.IWXObject{*;}
+-keep class org.apache.weex.ui.**{*;}
+-keep class org.apache.weex.ui.component.**{*;}
+-keep class org.apache.weex.utils.**{
     public <fields>;
     public <methods>;
     }
--keep class com.taobao.weex.view.**{*;}
--keep class com.taobao.weex.module.**{*;}
--keep public class * extends com.taobao.weex.common.WXModule{*;}
+-keepclassmembers class * {
+    @org.apache.weex.annotation.JSMethod *;
+}
+
+-keep class org.apache.weex.base.SystemMessageHandler { *; }
+-dontwarn org.apache.weex.bridge.**
 
 # mpweex
--keep class com.lmspay.mpweex.widget.indicators.**{*;}
+-keep class com.lmspay.zq.widget.indicators.**{*;}
 
 # fastjosn
 -keep class com.alibaba.fastjson.** {
  *;
 }
 -dontwarn com.alibaba.fastjson.**
+
+## --- yismcore ---
+-keep class net.yiim.yismcore.** {
+    public *;
+    native <methods>;
+}
 
 #--- okhttp ---
 -dontwarn com.squareup.okhttp.**
