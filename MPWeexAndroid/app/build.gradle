@@ -43,7 +43,7 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:28.0.0"
 
     // mpweex sdk libs
-    implementation "com.lmspay.mpweex:mpweex_sdk:0.28.0"
+    implementation "com.lmspay.mpweex:mpweex_sdk:0.28.0.1"
     implementation "com.aliyun.dpa:oss-android-sdk:2.9.2"
     implementation "com.alibaba:fastjson:1.2.58"
     implementation "com.contrarywind:Android-PickerView:4.1.6"
@@ -61,7 +61,7 @@ dependencies {
 
     // 下拉
     implementation "com.lmspay.springview:springview:0.1.3"
-    implementation "com.lmspay.mpweexheader:mpweexheader:0.1.3"
+    implementation "com.lmspay.mpweexheader:mpweexheader:0.1.4"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

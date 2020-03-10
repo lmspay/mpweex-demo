@@ -79,6 +79,7 @@ public class SecondFloorActivity extends AppCompatActivity {
         StatusBarCompat.translucentStatusBar(this, true);
 
         MPWeexHeader mpWeexHeader = new MPWeexHeader(this, toolbarRoot);
+        mpWeexHeader.setReservedSpringHeight(0);
         mpWeexHeader.setIndexPage("/index_wx.js");
         mpWeexHeader.setListener(new MPWeexHeader.MPWeexHeaderListener() {
             @SuppressLint("RestrictedApi")
