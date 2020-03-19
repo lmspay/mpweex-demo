@@ -1,34 +1,38 @@
-package com.lmspay.mpweexsdk.example;
+package com.lmspay.mpweexsdk.example.fragment;
 
-// Created by saint on 2019-11-23.
+// Created by saint on 2020-03-18.
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.lmspay.mpweexheader.MPWeexHeader;
-
+import com.lmspay.mpweexsdk.example.R;
 import com.lmspay.springview.widget.SpringView;
-import com.lmspay.zq.MPWeexSDK;
+import com.lmspay.zq.proxy.WXDialogProxy;
 import com.lmspay.zq.util.StatusBarCompat;
 
 import org.apache.weex.dom.CSSShorthand;
 import org.apache.weex.ui.view.border.BorderDrawable;
 
+import java.lang.ref.WeakReference;
 
-public class SecondFloorActivity extends AppCompatActivity {
+public class HomeFragment extends Fragment {
     // 二楼标题栏背景色
     private static final int SECONDFLOOR_NAV_BG_COLOR = 0xFF7488C3;
     // 二楼标题栏前景色
@@ -47,13 +51,17 @@ public class SecondFloorActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private AppCompatTextView mToolbarTitleView;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secondfloor);
+    private Context mContext;
+    private WeakReference<MPWeexHeader.MPWeexHeaderListener> mHeaderListener;
 
-        mToolbar = findViewById(R.id.mpweexToolbar);
-        setSupportActionBar(mToolbar);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_secondfloor, container, false);
+
+        mContext = getContext();
+
+        mToolbar = rootView.findViewById(R.id.mpweexToolbar);
         setupToolbar();
 
         mNavbarBgColor = 0xFF3F51B5;
@@ -67,19 +75,31 @@ public class SecondFloorActivity extends AppCompatActivity {
             mToolbar.setBackgroundDrawable(mToolbarBg);
         }
 
-        mSpringView = findViewById(R.id.mpweexRootView);
-        View toolbarRoot = findViewById(R.id.mpweexToolbarRoot);
+        mSpringView = (SpringView) rootView;
+        View toolbarRoot = rootView.findViewById(R.id.mpweexToolbarRoot);
+
+        // 给内容设置Padding，因为父布局是match_parent，tabbar会遮挡部分内容
+        rootView.findViewById(R.id.contentRootView).setPadding(0, 0, 0,
+                WXDialogProxy.dp2px(mContext, 50.5F));
 
         // 状态栏高度
-        mStatusBarView = findViewById(R.id.mpweexStatusBar);
-        final int statusH = StatusBarCompat.getStatusBarHeight(this);
-        StatusBarCompat.setViewHeightEqStatusbar(this, mStatusBarView);
+        mStatusBarView = rootView.findViewById(R.id.mpweexStatusBar);
+        final int statusH = StatusBarCompat.getStatusBarHeight(mContext);
+        StatusBarCompat.setViewHeightEqStatusbar(mContext, mStatusBarView);
 
-        // 状态栏沉浸式
-        StatusBarCompat.translucentStatusBar(this, true);
-
-        MPWeexHeader mpWeexHeader = new MPWeexHeader(this, toolbarRoot);
+        MPWeexHeader mpWeexHeader = new MPWeexHeader(mContext, toolbarRoot);
         mpWeexHeader.setIndexPage("/index_wx.js");
+
+        if(mHeaderListener != null && mHeaderListener.get() != null) {
+            // 如果tabBar跟随隐藏，则不需要保留tabBar部分的滚动高度
+        }else {
+            // tabbar 高度 + 分隔线高度
+            mpWeexHeader.setReservedSpringHeight(WXDialogProxy.dp2px(mContext, 50.5F));
+
+            // 如果父布局为match_parent，而不是above tabBar，则需要设置InnerReservedSpringHeight为0
+            mpWeexHeader.setInnerReservedSpringHeight(0);
+        }
+
         mpWeexHeader.setListener(new MPWeexHeader.MPWeexHeaderListener() {
             @SuppressLint("RestrictedApi")
             @Override
@@ -103,6 +123,12 @@ public class SecondFloorActivity extends AppCompatActivity {
                 int tintColor = evaluate(percent, mNavbarTintColor, SECONDFLOOR_NAV_TINT_COLOR);
                 ColorStateList colorStateList = getTintColor(tintColor);
                 mToolbarTitleView.setTextColor(colorStateList);
+                if(mHeaderListener != null) {
+                    MPWeexHeader.MPWeexHeaderListener listener = mHeaderListener.get();
+                    if(listener != null) {
+                        listener.onDropAnim(rootView, dy, percent);
+                    }
+                }
             }
 
             @SuppressLint("RestrictedApi")
@@ -124,11 +150,17 @@ public class SecondFloorActivity extends AppCompatActivity {
 
                     mToolbarTitleView.setTextColor(Color.WHITE);
                 }
+                if(mHeaderListener != null) {
+                    MPWeexHeader.MPWeexHeaderListener listener = mHeaderListener.get();
+                    if(listener != null) {
+                        listener.onFinishAnim(secondFloorOpened);
+                    }
+                }
             }
         });
 
         // 点击标题栏，弹回二楼
-        findViewById(R.id.mpweexToolbar).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.mpweexToolbar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mSecondFloorOpened) {
@@ -153,25 +185,13 @@ public class SecondFloorActivity extends AppCompatActivity {
         mMPWeexHeader = mpWeexHeader;
         mMPWeexHeader.onActivityCreate();
         mMPWeexHeader.setBackgroundColor(0xFF252239);
-    }
 
-    public void onMPClicked(View view) {
-        // 跳转到小程序页面
-
-        MPWeexSDK.getInstance().jumpToPage(SecondFloorActivity.this,
-                MPWeexSDK.MPPage.PAGE_INDEX);
+        return rootView;
     }
 
     private void setupToolbar() {
-        getSupportActionBar().setHomeButtonEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setDisplayShowCustomEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         // title view
-        LinearLayout titleRootView = new LinearLayout(this);
+        LinearLayout titleRootView = new LinearLayout(mContext);
         Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity = Gravity.CENTER;
@@ -183,10 +203,10 @@ public class SecondFloorActivity extends AppCompatActivity {
         titleRootView.setFocusableInTouchMode(false);
         titleRootView.setClickable(false);
 
-        mToolbarTitleView = new AppCompatTextView(this);
+        mToolbarTitleView = new AppCompatTextView(mContext);
         titleRootView.addView(mToolbarTitleView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        mToolbarTitleView.setText(getTitle());
+        mToolbarTitleView.setText("众圈小程序");
         mToolbarTitleView.setFocusable(false);
         mToolbarTitleView.setFocusableInTouchMode(false);
         mToolbarTitleView.setClickable(false);
@@ -233,7 +253,7 @@ public class SecondFloorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onActivityResume();
@@ -241,7 +261,7 @@ public class SecondFloorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onActivityPause();
         }
@@ -249,7 +269,7 @@ public class SecondFloorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onActivityStart();
@@ -257,7 +277,7 @@ public class SecondFloorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onActivityStop();
         }
@@ -265,7 +285,7 @@ public class SecondFloorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onActivityDestroy();
         }
@@ -285,6 +305,26 @@ public class SecondFloorActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(mMPWeexHeader != null) {
             mMPWeexHeader.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    public void setHeaderListener(MPWeexHeader.MPWeexHeaderListener headerListener) {
+        this.mHeaderListener = new WeakReference<>(headerListener);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // 状态栏使用白色前景色
+        StatusBarCompat.setStatusTextColor(false, getActivity());
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden) {
+            // 状态栏使用白色前景色
+            StatusBarCompat.setStatusTextColor(false, getActivity());
         }
     }
 }

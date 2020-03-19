@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         mExamplesList.add(new String[]{"Others", "跳转至小程序", "jumpToMP"});
         mExamplesList.add(new String[]{"Others", "接口数据展示", "apiDataShow"});
         mExamplesList.add(new String[]{"Others", "仿微信下拉", "secondFloor"});
+        mExamplesList.add(new String[]{"Others", "带TAB下拉", "secondFloor2"});
+        mExamplesList.add(new String[]{"Others", "带TAB下拉（隐藏TabBar）", "secondFloor2_1"});
 
         GroupListAdapter adapter = new GroupListAdapter(this, mExamplesList);
         mListView.setAdapter(adapter);
@@ -97,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }else if("secondFloor".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, SecondFloorActivity.class);
+                        startActivity(intent);
+                    }else if("secondFloor2".equals(itemArr[2])) {
+                        Intent intent = new Intent(MainActivity.this, SecondFloor2Activity.class);
+                        intent.putExtra("hideTabBar", false);
+                        startActivity(intent);
+                    }else if("secondFloor2_1".equals(itemArr[2])) {
+                        Intent intent = new Intent(MainActivity.this, SecondFloor2Activity.class);
                         startActivity(intent);
                     }
                 }

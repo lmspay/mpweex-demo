@@ -19,6 +19,9 @@
         <activity android:name="com.lmspay.mpweexsdk.example.SecondFloorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/mpweexAppTheme" />
+        <activity android:name="com.lmspay.mpweexsdk.example.SecondFloor2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/mpweexAppTheme" />
 
         <activity android:name="com.lmspay.mpweexsdk.SplashActivity"
             android:screenOrientation="portrait"
