@@ -123,9 +123,7 @@ public class ApiExampleActivity extends AppCompatActivity implements MPWeexSDK.R
                 MPWeexSDK.getInstance().onLogin(
                         Constants.DEFAULT_APP_UID,
                         Constants.DEFAULT_APP_PHONE,
-                        null, 1, null, null,
-                        "小众", null,
-                        null, this);
+                        this);
                 break;
             case "getRecentMPList":
                 // 开户后则可以调用

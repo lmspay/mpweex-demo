@@ -17,7 +17,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="单行推荐位" />
+            android:text="单行推荐位(高80dp)" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_one"
@@ -34,7 +34,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="两行推荐位" />
+            android:text="两行推荐位(高152dp)" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_two"
@@ -51,13 +51,30 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="三行推荐位" />
+            android:text="三行推荐位(高224dp)" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_three"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:background="#DDDDDD"
+            android:textColor="#999999"
+            android:textSize="14sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="横向滚动推荐位(高80dp)" android:visibility="gone" />
+
+        <com.lmspay.zq.widget.WXAdsWidget
+            android:id="@+id/mp_horizontal"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:visibility="gone" />
 
     </LinearLayout>
 

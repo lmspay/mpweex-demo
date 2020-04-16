@@ -28,6 +28,10 @@ public class HAdsActivity extends AppCompatActivity {
         adsWidget = findViewById(R.id.mp_row_three);
         adsWidget.setupThreeRow();
 
+        // 显示标题栏，横向滚动
+        adsWidget = findViewById(R.id.mp_horizontal);
+        adsWidget.setup(false, false, WXAdsWidget.TYPE_HORIZONTAL_SCROLL);
+
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
