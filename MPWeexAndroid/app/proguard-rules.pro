@@ -112,6 +112,7 @@
 
 # mpweex
 -keep class com.lmspay.zq.widget.indicators.**{*;}
+-keep class com.lmspay.zq.model.**{*;}
 
 # fastjosn
 -keep class com.alibaba.fastjson.** {
@@ -124,6 +125,15 @@
     public *;
     native <methods>;
 }
+
+# 不混淆银联
+-keep class com.unionpay.** {*;}
+-keep interface com.unionpay.** {*;}
+-keep class cn.gov.pbc.tsm.** {*;}
+-keep interface cn.gov.pbc.tsm.** {*;}
+-keep class org.simalliance.openmobileapi.** {*;}
+-dontwarn com.unionpay.**
+-dontwarn cn.gov.pbc.tsm.**
 
 #--- okhttp ---
 -dontwarn com.squareup.okhttp.**

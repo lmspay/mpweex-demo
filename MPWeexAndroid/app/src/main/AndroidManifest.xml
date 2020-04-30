@@ -38,6 +38,12 @@
             android:value="0fa0262cd2cc8370ae71833e02f1c060" />
         <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:theme="@style/mpweexAppTheme.Fullscreen"
+            android:exported="true"
+            android:taskAffinity="com.lmspay.mpweexsdk.example"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>
