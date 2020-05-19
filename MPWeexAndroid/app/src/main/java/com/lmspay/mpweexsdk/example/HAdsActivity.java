@@ -18,19 +18,19 @@ public class HAdsActivity extends AppCompatActivity {
 
         // 显示标题栏，一行
         WXAdsWidget adsWidget = findViewById(R.id.mp_row_one);
-        adsWidget.setupOneRow();
+        adsWidget.setup(true, false, WXAdsWidget.TYPE_ROW_ONE);
 
         // 显示标题栏，两行
         adsWidget = findViewById(R.id.mp_row_two);
-        adsWidget.setupTwoRow();
+        adsWidget.setup(true, false, WXAdsWidget.TYPE_ROW_TWO);
 
         // 显示标题栏，三行
         adsWidget = findViewById(R.id.mp_row_three);
-        adsWidget.setupThreeRow();
+        adsWidget.setup(true, false, WXAdsWidget.TYPE_ROW_THREE);
 
         // 显示标题栏，横向滚动
         adsWidget = findViewById(R.id.mp_horizontal);
-        adsWidget.setup(false, false, WXAdsWidget.TYPE_HORIZONTAL_SCROLL);
+        adsWidget.setup(true, false, WXAdsWidget.TYPE_HORIZONTAL_SCROLL);
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
