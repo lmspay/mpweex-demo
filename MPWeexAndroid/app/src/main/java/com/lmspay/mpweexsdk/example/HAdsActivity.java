@@ -36,7 +36,7 @@ public class HAdsActivity extends AppCompatActivity {
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        setTitle("水平方向广告位");
+        setTitle("推荐位");
     }
 
     @Override

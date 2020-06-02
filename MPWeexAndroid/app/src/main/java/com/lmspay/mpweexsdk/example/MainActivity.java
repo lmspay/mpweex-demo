@@ -36,30 +36,18 @@ public class MainActivity extends AppCompatActivity {
         mListView = findViewById(R.id.list);
 
         List<Map<String, Object>> mapList = new ArrayList<>();
-
-        mExamplesList.add(new String[]{"group", "API"});
-        mExamplesList.add(new String[]{"API", "搜索小程序(游客)", "searchMP", "SearchMpweexModel"});
-        mExamplesList.add(new String[]{"API", "获取推荐的小程序(游客)", "getRecommendList", "RecommendModel"});
-        mExamplesList.add(new String[]{"API", "登录信息同步(游客，幂等)", "onLogin", "OpenAccountModel"});
-
-        mExamplesList.add(new String[]{"API", "获取我关注的", "getMyMPList", "OwnmpweexModel"});
-        mExamplesList.add(new String[]{"API", "获取最近使用的", "getRecentMPList", "AccesslogModel"});
-        mExamplesList.add(new String[]{"API", "添加到我关注的", "addFootprint1", "CommonModel"});
-        mExamplesList.add(new String[]{"API", "从我关注的中移除", "addFootprint2", "CommonModel"});
-
         mExamplesList.add(new String[]{"group", "Pages"});
         mExamplesList.add(new String[]{"Pages", "小程序主页", "index"});
         mExamplesList.add(new String[]{"Pages", "最近使用", "recent"});
         mExamplesList.add(new String[]{"Pages", "我关注的", "mymp"});
-        mExamplesList.add(new String[]{"Pages", "推荐的", "recommend"});
+        mExamplesList.add(new String[]{"Pages", "精彩推荐", "recommend"});
         mExamplesList.add(new String[]{"Pages", "搜索小程序", "search"});
 
         mExamplesList.add(new String[]{"group", "Widget"});
-        mExamplesList.add(new String[]{"Widget", "水平方向广告位", "hads"});
+        mExamplesList.add(new String[]{"Widget", "推荐位", "hads"});
 
         mExamplesList.add(new String[]{"group", "其它"});
         mExamplesList.add(new String[]{"Others", "跳转至小程序", "jumpToMP"});
-        mExamplesList.add(new String[]{"Others", "接口数据展示", "apiDataShow"});
         mExamplesList.add(new String[]{"Others", "仿微信下拉", "secondFloor"});
         mExamplesList.add(new String[]{"Others", "带TAB下拉", "secondFloor2"});
         mExamplesList.add(new String[]{"Others", "带TAB下拉（隐藏TabBar）", "secondFloor2_1"});
@@ -71,13 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String[] itemArr = mExamplesList.get(position);
-                if("API".equals(itemArr[0])) {
-                    Intent intent = new Intent(MainActivity.this, ApiExampleActivity.class);
-                    intent.putExtra("desc", itemArr[1]);
-                    intent.putExtra("api", itemArr[2]);
-                    intent.putExtra("model", itemArr[3]);
-                    startActivity(intent);
-                }else if("Pages".equals(itemArr[0])) {
+                if("Pages".equals(itemArr[0])) {
                     MPWeexSDK.MPPage mpPage = MPWeexSDK.MPPage.valuesOf(itemArr[2]);
                     if(mpPage != null) {
                         MPWeexSDK.getInstance().jumpToPage(MainActivity.this, mpPage);
@@ -94,10 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                 "MPAAABa7vz87hIvbIAq1lG",
                                 MPWeexSDK.getInstance().getSystemMPIcon(),
                                 1, 1);
-                    }else if("apiDataShow".equals(itemArr[2])) {
-                        Intent intent = new Intent(MainActivity.this, ApiDataShowActivity.class);
-                        startActivity(intent);
-                    }else if("secondFloor".equals(itemArr[2])) {
+                    }if("secondFloor".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, SecondFloorActivity.class);
                         startActivity(intent);
                     }else if("secondFloor2".equals(itemArr[2])) {

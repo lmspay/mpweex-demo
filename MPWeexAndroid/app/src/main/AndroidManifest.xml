@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.lmspay.mpweexsdk.example.MainActivity" />
 
-        <activity android:name="com.lmspay.mpweexsdk.example.ApiDataShowActivity" />
-        <activity android:name="com.lmspay.mpweexsdk.example.ApiExampleActivity" />
         <activity android:name="com.lmspay.mpweexsdk.example.HAdsActivity" />
         <activity android:name="com.lmspay.mpweexsdk.example.SecondFloorActivity"
             android:screenOrientation="portrait"
