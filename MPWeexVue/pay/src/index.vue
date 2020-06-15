@@ -4,7 +4,8 @@
     <text class="greeting">聚合支付测试样例程序</text>
     <text class="btn" @click="jump2Pay">支付测试</text>
     <text class="btn" @click="jump2List">订单列表</text>
-    <text class="btn" @click="jump2GetPhone" v-if="weexVersionCode >= 2801">授权获取手机号</text>
+    <text class="btn" @click="jump2GetPhone" v-if="weexVersionCode >= 2802">授权获取手机号</text>
+    <text class="btn" @click="jump2LeaderBoards" v-if="weexVersionCode >= 2802">跳转排行榜</text>
   </div>
 </template>
 
@@ -126,6 +127,13 @@ export default {
         }else {
           modal.toast({message: e.statusCode + ': ' + e.data});
         }
+      });
+    },
+    jump2LeaderBoards() {
+      sys.showLeaderBoards({
+        'mpid': 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+      }, e=> {
+
       });
     }
   }
