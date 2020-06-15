@@ -195,7 +195,11 @@
                         this.getOrderStatus();
                     }else {
                         modal.dismiss();
-                        modal.toast({message: ret.status + ': ' + ret.statusText});
+                        if(ret.data) {
+                            modal.toast({message: ret.data.code + ': ' + ret.data.message});
+                        }else {
+                            modal.toast({message: ret.status + ': ' + ret.statusText});
+                        }
                     }
                 });
             }

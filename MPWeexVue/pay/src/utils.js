@@ -50,7 +50,7 @@ const Utils = {
         if(signStr.length > 1) {
             signStr += '&';
         }
-        ret["timestamp"] = Math.round(new Date().getTime());
+        ret["timestamp"] = ''+Math.round(new Date().getTime());
 
         signStr += "path=";
         signStr += path;

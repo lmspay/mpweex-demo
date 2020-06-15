@@ -4,6 +4,7 @@
     <text class="greeting">聚合支付测试样例程序</text>
     <text class="btn" @click="jump2Pay">支付测试</text>
     <text class="btn" @click="jump2List">订单列表</text>
+    <text class="btn" @click="jump2GetPhone" v-if="weexVersionCode >= 2801">授权获取手机号</text>
   </div>
 </template>
 
@@ -19,10 +20,12 @@ export default {
   data () {
     return {
       logo: 'mpweex://images/logo.png',
-      unionid: ''
+      unionid: '',
+      weexVersionCode: 0
     }
   },
   created: function() {
+    this.weexVersionCode = parseInt(WXEnvironment.weexVersionCode);
     this.jump2Login();
   },
   methods: {
@@ -59,7 +62,8 @@ export default {
         }else {
           modal.toast({message: e.statusCode + ': ' + e.data});
         }
-      });
+      }, 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+      );
     },
     jump2Pay() {
       if(this.unionid.length < 1) {
@@ -85,6 +89,43 @@ export default {
         pageParams: JSON.stringify({
           unionid: this.unionid
         })
+      });
+    },
+    jump2GetPhone() {
+      sys.getPhoneNumber({
+        'mpid': 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+      }, (e) => {
+        if(e.ok) {
+          // 拿到授权后，调用小程序自己服务端获取用户手机号，需要服务端封装接口
+          modal.progress({
+            message: '正在获取用户手机号码...',
+          });
+          var signParams = {};
+          signParams["accesstoken"] = e.data.accesstoken;
+          var retSignData = Utils.getSign("GET", '/users/getphoneno', signParams);
+
+          stream.fetch({
+            method: 'GET',
+            url: Utils.apiUrl('/users/getphoneno', {
+              accesstoken: e.data.accesstoken
+            }),
+            headers: {
+              "timestamp": retSignData["timestamp"],
+              "acctoken": retSignData["acctoken"]
+            },
+            type: 'json'
+          }, (ret) => {
+            modal.dismiss();
+            if(ret.ok) {
+              modal.toast({message: "获取手机号码成功：" + ret.data.phoneno});
+            }else {
+              modal.toast({message: ret.status + ': ' + ret.statusText});
+            }
+          });
+          console.log(JSON.stringify(e.data));
+        }else {
+          modal.toast({message: e.statusCode + ': ' + e.data});
+        }
       });
     }
   }
