@@ -120,8 +120,8 @@
 }
 -dontwarn com.alibaba.fastjson.**
 
-## --- yismcore ---
--keep class net.yiim.yismcore.** {
+## --- yicrypto ---
+-keep class net.yiim.yicrypto.** {
     public *;
     native <methods>;
 }
