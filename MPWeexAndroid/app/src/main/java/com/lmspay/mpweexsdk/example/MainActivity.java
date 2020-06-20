@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                 MainActivity.this,
                                 "MPAAABa7vz87hIvbIAq1lG",
                                 MPWeexSDK.getInstance().getSystemMPIcon(),
-                                1, 1);
+                                1, 1, "");
                     }if("secondFloor".equals(itemArr[2])) {
                         Intent intent = new Intent(MainActivity.this, SecondFloorActivity.class);
                         startActivity(intent);
