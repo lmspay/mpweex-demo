@@ -17,7 +17,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="单行推荐位(高100dp)" />
+            android:text="单行推荐位" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_one"
@@ -34,7 +34,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="两行推荐位(高168dp)" />
+            android:text="两行推荐位" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_two"
@@ -51,7 +51,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="三行推荐位(高236dp)" />
+            android:text="三行推荐位" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_row_three"
@@ -68,7 +68,7 @@
             android:textSize="14sp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="横向滚动推荐位(高100dp)" android:visibility="gone" />
+            android:text="横向滚动推荐位" android:visibility="gone" />
 
         <com.lmspay.zq.widget.WXAdsWidget
             android:id="@+id/mp_horizontal"
