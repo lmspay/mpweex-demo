@@ -5,18 +5,23 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.widget.ImageView;
 
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.apache.weex.WXSDKManager;
 import org.apache.weex.adapter.IWXImgLoaderAdapter;
@@ -103,44 +108,58 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
 
     private void loadImage(final Context context, final String url, final ImageView view,
                            final WXImageQuality quality, final WXImageStrategy strategy, final boolean asBitmap, String temp, int type) {
-        DrawableTypeRequest imageReq;
-        if(type == 0) { // base64
-            imageReq = Glide.with(context).load(Base64.decode(temp, Base64.DEFAULT));
-        }else if(type == 1) { // local file
-            imageReq = Glide.with(context).load(Uri.parse(temp));
-        }else {
-            if(temp.startsWith("http") || temp.startsWith("https")) {
-                imageReq = Glide.with(context).load(new QNCacheGlideUrl(temp));
-            }else {
-                imageReq = Glide.with(context).load(temp);
-            }
-        }
-
         if(!asBitmap) {
+            RequestBuilder<Drawable> imageReq;
+
+            if(type == 0) { // base64
+                imageReq = Glide.with(context).load(Base64.decode(temp, Base64.DEFAULT));
+            }else if(type == 1) { // local file
+                imageReq = Glide.with(context).load(Uri.parse(temp));
+            }else {
+                if(temp.startsWith("http") || temp.startsWith("https")) {
+                    imageReq = Glide.with(context).load(new QNCacheGlideUrl(temp));
+                }else {
+                    imageReq = Glide.with(context).load(temp);
+                }
+            }
+
+            RequestOptions options = new RequestOptions();
             if(strategy.centerCrop) {
-                imageReq.centerCrop();
+                options = options.centerCrop();
             }
             if(strategy.placeHolderResource != -1) {
-                imageReq.placeholder(AppCompatResources.getDrawable(context, strategy.placeHolderResource));
+                options = options.placeholder(AppCompatResources.getDrawable(context, strategy.placeHolderResource));
             }
             if(strategy.sizeWidth != -1 && strategy.sizeHeight != -1) {
-                imageReq.override(strategy.sizeWidth, strategy.sizeHeight);
+                options = options.override(strategy.sizeWidth, strategy.sizeHeight);
             }
-            imageReq.listener(new RequestListener() {
+            imageReq.apply(options).listener(new RequestListener<Drawable>() {
                 @Override
-                public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                     return GlideImageAdapter.this.onException(url, view, quality, strategy);
                 }
 
                 @Override
-                public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                     return GlideImageAdapter.this.onResourceReady(url, view, quality, strategy);
                 }
             }).into(view);
         }else {
-            imageReq.asBitmap().into(new SimpleTarget<Bitmap>() {
+            RequestBuilder<Bitmap> imageReq = Glide.with(context).asBitmap();
+            if(type == 0) {
+                imageReq = imageReq.load(Base64.decode(temp, Base64.DEFAULT));
+            }else if(type == 1) {
+                imageReq = imageReq.load(Uri.parse(temp));
+            }else {
+                if(temp.startsWith("http") || temp.startsWith("https")) {
+                    imageReq = imageReq.load(new QNCacheGlideUrl(temp));
+                }else {
+                    imageReq = imageReq.load(temp);
+                }
+            }
+            imageReq.into(new SimpleTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     if(strategy.getImageDownloadListener() != null) {
                         strategy.getImageDownloadListener().onImageFinish(url,
                                 resource, true, null);
@@ -148,7 +167,7 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
                 }
 
                 @Override
-                public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     if(strategy.getImageDownloadListener() != null) {
                         strategy.getImageDownloadListener().onImageFinish(url,
                                 null, false, null);
@@ -180,7 +199,7 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
         if (!TextUtils.isEmpty(strategy.placeHolder)) {
             Target placeHoderTarget = (Target) view.getTag(strategy.placeHolder.hashCode());
             if (placeHoderTarget != null) {
-                Glide.clear(placeHoderTarget);
+                Glide.with(view).clear(placeHoderTarget);
             }
         }
         return false;
