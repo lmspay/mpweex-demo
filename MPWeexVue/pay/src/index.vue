@@ -63,7 +63,7 @@ export default {
         }else {
           modal.toast({message: e.statusCode + ': ' + e.data});
         }
-      }, 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+      }, 'MPAAABbdzoiyVwAVWB_Qm4' // 调试时存在，改为你自己的小程序ID
       );
     },
     jump2Pay() {
@@ -94,7 +94,7 @@ export default {
     },
     jump2GetPhone() {
       sys.getPhoneNumber({
-        'mpid': 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+        'mpid': 'MPAAABbdzoiyVwAVWB_Qm4' // 调试时存在，改为你自己的小程序ID
       }, (e) => {
         if(e.ok) {
           // 拿到授权后，调用小程序自己服务端获取用户手机号，需要服务端封装接口
@@ -131,7 +131,7 @@ export default {
     },
     jump2LeaderBoards() {
       sys.showLeaderBoards({
-        'mpid': 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+        'mpid': 'MPAAABbdzoiyVwAVWB_Qm4' // 调试时存在，改为你自己的小程序ID
       }, e=> {
 
       });

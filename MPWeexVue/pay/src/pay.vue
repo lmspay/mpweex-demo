@@ -59,7 +59,7 @@
                     'orderDesc': this.orderDesc,
                     'totalAmount': this.totalAmount,
                     'channelName': this.channelName,
-                    'mpid': 'MPAAABcicCKNKR7IVS4hyO' // 调试时存在，改为你自己的小程序ID
+                    'mpid': 'MPAAABbdzoiyVwAVWB_Qm4' // 调试时存在，改为你自己的小程序ID
                 }, (ret) => {
                     if(!ret.ok) {
                         modal.toast({message: "参数非法, orderDesc, totalAmount, channelName必填"});
