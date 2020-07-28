@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 实现开户，程序内应登录成功后调用，Playground默认用户调用
-        MPWeexSDK.getInstance().onLogin(Constants.DEFAULT_APP_UID, Constants.DEFAULT_APP_PHONE,
+        MPWeexSDK.getInstance().syncAccount(Constants.DEFAULT_APP_UID, Constants.DEFAULT_APP_PHONE,
                 new MPWeexSDK.ResponseCallback() {
                     @Override
                     public void onResponse(final boolean ok, int statusCode, final Object data, Map<String, String> headers) {
