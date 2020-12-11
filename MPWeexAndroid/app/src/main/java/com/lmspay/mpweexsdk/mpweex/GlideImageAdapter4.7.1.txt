@@ -141,7 +141,7 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
 
                 @Override
                 public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                    return GlideImageAdapter.this.onResourceReady(url, view, quality, strategy);
+                    return GlideImageAdapter.this.onResourceReady(resource, url, view, quality, strategy);
                 }
             }).into(view);
         }else {
@@ -191,8 +191,11 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
         return false;
     }
 
-    private boolean onResourceReady(final String url, final ImageView view, WXImageQuality quality, final WXImageStrategy strategy) {
+    private boolean onResourceReady(Drawable resource, final String url, final ImageView view, WXImageQuality quality, final WXImageStrategy strategy) {
         if (strategy.getImageListener() != null) {
+            Map extra = new HashMap();
+            extra.put("width", resource.getIntrinsicWidth());
+            extra.put("height", resource.getIntrinsicHeight());
             strategy.getImageListener().onImageFinish(url, view, true, null);
         }
 

@@ -134,7 +134,7 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
 
                 @Override
                 public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    return GlideImageAdapter.this.onResourceReady(url, view, quality, strategy);
+                    return GlideImageAdapter.this.onResourceReady(resource, url, view, quality, strategy);
                 }
             }).into(view);
         }else {
@@ -172,9 +172,14 @@ public class GlideImageAdapter implements IWXImgLoaderAdapter {
         return false;
     }
 
-    private boolean onResourceReady(final String url, final ImageView view, WXImageQuality quality, final WXImageStrategy strategy) {
+    private boolean onResourceReady(Object resource, final String url, final ImageView view, WXImageQuality quality, final WXImageStrategy strategy) {
         if (strategy.getImageListener() != null) {
-            strategy.getImageListener().onImageFinish(url, view, true, null);
+            Map extra = new HashMap();
+            if(resource instanceof Drawable) {
+                extra.put("width", ((Drawable) resource).getIntrinsicWidth());
+                extra.put("height", ((Drawable) resource).getIntrinsicHeight());
+            }
+            strategy.getImageListener().onImageFinish(url, view, true, extra);
         }
 
         if (!TextUtils.isEmpty(strategy.placeHolder)) {
